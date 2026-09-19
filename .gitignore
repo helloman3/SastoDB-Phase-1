@@ -1,0 +1,21 @@
+# Compiled binaries and object files
+*.exe
+*.o
+*.obj
+*.out
+bin/
+build/
+
+# Runtime database files and catalogs
+*_data.txt
+db_catalog.txt
+
+# Editor / IDE configuration
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
