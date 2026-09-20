@@ -6,13 +6,14 @@
 
 > A lightweight, embedded relational database management system (RDBMS) engine written from scratch in pure C++.
 
-SastoDB provides an interactive SQL shell (REPL), in-memory query processing, robust constraint checking, and automatic disk persistence, built on clean and readable Object-Oriented Programming (OOP) principles.
+SastoDB provides an interactive SQL shell (REPL), in-memory query processing, robust constraint checking, and automatic disk persistence, built as a **streamlined, self-contained single-file engine**.
 
 ---
 
 ## Key Features
 
 - **Pure C++ Engine**: No external dependencies or heavy frameworks; uses standard C++17.
+- **Single-File Architecture**: The complete engine is contained in `src/main.cpp` (~360 lines) for zero header-inclusion issues and transparent debugging.
 - **SQL DDL & DML Support**:
   - `CREATE TABLE` (with multiple column definitions and constraints)
   - `DROP TABLE`
@@ -37,16 +38,17 @@ SastoDB provides an interactive SQL shell (REPL), in-memory query processing, ro
 ```text
 SastoDB-Phase-1/
 ├── src/
-│   ├── include/
-│   │   ├── Column.cpp      # Column schema, data types, and constraint definitions
-│   │   ├── Command.cpp     # Polymorphic Command Pattern for SQL statements
-│   │   ├── Database.cpp    # Catalog management, multi-table coordination, and I/O
-│   │   ├── Row.cpp         # Record representation and operator overloading
-│   │   ├── Table.cpp       # Table storage, constraint validation, queries, and ASCII grids
-│   │   └── Utils.cpp       # Clean string manipulation and conversion utilities
-│   └── main.cpp            # Interactive REPL shell and SQL query parser
-├── DOCUMENTATION.md        # Comprehensive technical and architecture documentation
-├── .gitignore              # Ignores binaries and generated data files
+│   └── main.cpp            # Self-contained single-file RDBMS engine (~360 lines)
+├── Test_Screenshots/       # Clean terminal-only test verification screenshots
+│   ├── Screenshot_1.png    # Build, banner, and .help command
+│   ├── Screenshot_2.png    # Accounts table & PK constraint check
+│   ├── Screenshot_3.png    # Employees table multi-row operations & WHERE filter
+│   ├── Screenshot_4.png    # Demo script pipeline (students table & constraints)
+│   ├── Screenshot_5.png    # Syntax errors & schema inspection (VIEW)
+│   └── Screenshot_6.png    # Range queries, dynamic CREATE/DROP, and exit
+├── Demo_Script.txt         # Automated demo test script
+├── DOCUMENTATION.md        # Comprehensive line-by-line & architectural documentation
+├── .gitignore              # Ignores binaries (*.exe) and build artifacts
 └── README.md               # Project overview and quickstart guide
 ```
 
@@ -65,7 +67,7 @@ cd src
 g++ -std=c++17 -Wall main.cpp -o main
 ```
 
-### 2. Run
+### 2. Run Interactively
 Launch the interactive SQL shell:
 
 ```bash
@@ -75,6 +77,27 @@ Launch the interactive SQL shell:
 # On Linux/macOS
 ./main
 ```
+
+### 3. Run Automated Demo Script
+```powershell
+Get-Content "..\Demo_Script.txt" | .\main.exe
+```
+
+---
+
+## Screenshots & Demo
+
+### 1. Compilation & Interactive Startup
+![Startup & Help](Test_Screenshots/Screenshot_1.png)
+
+### 2. Demo Script Pipeline (Constraints & Table Queries)
+![Demo Script](Test_Screenshots/Screenshot_4.png)
+
+### 3. Multi-Row Operations & Filtered Queries
+![Employees Queries](Test_Screenshots/Screenshot_3.png)
+
+### 4. Syntax Validation & Schema Inspection
+![Syntax & Schema](Test_Screenshots/Screenshot_5.png)
 
 ---
 
@@ -138,6 +161,11 @@ VIEW students;
 ```sql
 .exit
 ```
+
+---
+
+## Documentation
+For an in-depth line-by-line explanation of the entire engine code and file storage format, please read [DOCUMENTATION.md](DOCUMENTATION.md).
 
 ---
 

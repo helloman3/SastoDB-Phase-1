@@ -1,0 +1,25 @@
+1. Create a table with full constraints
+CREATE TABLE students (id INT PRIMARY KEY, name TEXT UNIQUE, score INT NOT NULL);
+
+2. Insert valid records (SUCCEEDS)
+INSERT INTO students VALUES (1, Alex, 92);
+INSERT INTO students VALUES (2, Bella, 88);
+
+3. Constraint enforcement tests (ALL SHOULD FAIL WITH ERRORS)
+INSERT INTO students VALUES (1, Charlie, 95);   -- Error: Duplicate PRIMARY KEY '1'
+INSERT INTO students VALUES (3, Alex, 90);      -- Error: Duplicate UNIQUE 'Alex'
+INSERT INTO students VALUES (4, David, NULL);   -- Error: NOT NULL violation on 'score'
+
+4. View initial table
+SELECT * FROM students;
+
+5. Update and Delete operations
+UPDATE students SET score = 95 WHERE id = 1;
+DELETE FROM students WHERE id = 2;
+
+6. Query filtered record & final state
+SELECT * FROM students WHERE id = 1;
+SELECT * FROM students;
+
+7. Persist to disk and exit
+.exit
